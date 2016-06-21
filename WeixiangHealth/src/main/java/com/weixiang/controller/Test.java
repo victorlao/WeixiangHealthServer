@@ -25,7 +25,7 @@ public class Test extends BaseController{
 
     @RequestMapping("/test")
     @ResponseBody
-    public String test(int id) {
+    public Result<String> test(int id) {
         BabyPic babyPic = babyPicService.babyPicById(id);
         if (babyPic != null) {
             System.out.println(babyPic.getPicpath());
@@ -34,7 +34,7 @@ public class Test extends BaseController{
         if (pushnews != null) {
             System.out.println(pushnews.getTitle());
         }
-        return "";
+        return new Result<String>(1, "message", "fdfdf");
     }
 
 }
