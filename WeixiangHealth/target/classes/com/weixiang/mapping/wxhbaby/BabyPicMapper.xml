@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weixiang.dao.wxhbaby.BabyPicMapper" >
+  <resultMap id="BaseResultMap" type="com.weixiang.pojo.wxhbaby.BabyPic" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="babyid" property="babyid" jdbcType="INTEGER" />
+    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.weixiang.pojo.wxhbaby.BabyPic" extends="BaseResultMap" >
+    <result column="pic" property="pic" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, babyid, picpath
+  </sql>
+  <sql id="Blob_Column_List" >
+    pic
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from babyPic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from babyPic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.weixiang.pojo.wxhbaby.BabyPic" >
+    insert into babyPic (id, babyid, picpath, 
+      pic)
+    values (#{id,jdbcType=INTEGER}, #{babyid,jdbcType=INTEGER}, #{picpath,jdbcType=VARCHAR}, 
+      #{pic,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.weixiang.pojo.wxhbaby.BabyPic" >
+    insert into babyPic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="babyid != null" >
+        babyid,
+      </if>
+      <if test="picpath != null" >
+        picpath,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="babyid != null" >
+        #{babyid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weixiang.pojo.wxhbaby.BabyPic" >
+    update babyPic
+    <set >
+      <if test="babyid != null" >
+        babyid = #{babyid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.weixiang.pojo.wxhbaby.BabyPic" >
+    update babyPic
+    set babyid = #{babyid,jdbcType=INTEGER},
+      picpath = #{picpath,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weixiang.pojo.wxhbaby.BabyPic" >
+    update babyPic
+    set babyid = #{babyid,jdbcType=INTEGER},
+      picpath = #{picpath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

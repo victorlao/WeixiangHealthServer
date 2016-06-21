@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weixiang.dao.wxhbabylist.PushnewsMapper" >
+  <resultMap id="BaseResultMap" type="com.weixiang.pojo.wxhbabylist.Pushnews" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+    <result column="createuser" property="createuser" jdbcType="VARCHAR" />
+    <result column="nflag" property="nflag" jdbcType="SMALLINT" />
+    <result column="audit" property="audit" jdbcType="SMALLINT" />
+    <result column="auditdate" property="auditdate" jdbcType="TIMESTAMP" />
+    <result column="audituser" property="audituser" jdbcType="VARCHAR" />
+    <result column="bkpicpath" property="bkpicpath" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.weixiang.pojo.wxhbabylist.Pushnews" extends="BaseResultMap" >
+    <result column="pic" property="pic" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, label, createdate, picpath, createuser, nflag, audit, auditdate, audituser, 
+    bkpicpath
+  </sql>
+  <sql id="Blob_Column_List" >
+    pic
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pushnews
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pushnews
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.weixiang.pojo.wxhbabylist.Pushnews" >
+    insert into pushnews (id, title, label, 
+      createdate, picpath, createuser, 
+      nflag, audit, auditdate, 
+      audituser, bkpicpath, pic
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{picpath,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
+      #{nflag,jdbcType=SMALLINT}, #{audit,jdbcType=SMALLINT}, #{auditdate,jdbcType=TIMESTAMP}, 
+      #{audituser,jdbcType=VARCHAR}, #{bkpicpath,jdbcType=NVARCHAR}, #{pic,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.weixiang.pojo.wxhbabylist.Pushnews" >
+    insert into pushnews
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="label != null" >
+        label,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="picpath != null" >
+        picpath,
+      </if>
+      <if test="createuser != null" >
+        createuser,
+      </if>
+      <if test="nflag != null" >
+        nflag,
+      </if>
+      <if test="audit != null" >
+        audit,
+      </if>
+      <if test="auditdate != null" >
+        auditdate,
+      </if>
+      <if test="audituser != null" >
+        audituser,
+      </if>
+      <if test="bkpicpath != null" >
+        bkpicpath,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picpath != null" >
+        #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="nflag != null" >
+        #{nflag,jdbcType=SMALLINT},
+      </if>
+      <if test="audit != null" >
+        #{audit,jdbcType=SMALLINT},
+      </if>
+      <if test="auditdate != null" >
+        #{auditdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="audituser != null" >
+        #{audituser,jdbcType=VARCHAR},
+      </if>
+      <if test="bkpicpath != null" >
+        #{bkpicpath,jdbcType=NVARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weixiang.pojo.wxhbabylist.Pushnews" >
+    update pushnews
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picpath != null" >
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        createuser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="nflag != null" >
+        nflag = #{nflag,jdbcType=SMALLINT},
+      </if>
+      <if test="audit != null" >
+        audit = #{audit,jdbcType=SMALLINT},
+      </if>
+      <if test="auditdate != null" >
+        auditdate = #{auditdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="audituser != null" >
+        audituser = #{audituser,jdbcType=VARCHAR},
+      </if>
+      <if test="bkpicpath != null" >
+        bkpicpath = #{bkpicpath,jdbcType=NVARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.weixiang.pojo.wxhbabylist.Pushnews" >
+    update pushnews
+    set title = #{title,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      picpath = #{picpath,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      nflag = #{nflag,jdbcType=SMALLINT},
+      audit = #{audit,jdbcType=SMALLINT},
+      auditdate = #{auditdate,jdbcType=TIMESTAMP},
+      audituser = #{audituser,jdbcType=VARCHAR},
+      bkpicpath = #{bkpicpath,jdbcType=NVARCHAR},
+      pic = #{pic,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weixiang.pojo.wxhbabylist.Pushnews" >
+    update pushnews
+    set title = #{title,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      picpath = #{picpath,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      nflag = #{nflag,jdbcType=SMALLINT},
+      audit = #{audit,jdbcType=SMALLINT},
+      auditdate = #{auditdate,jdbcType=TIMESTAMP},
+      audituser = #{audituser,jdbcType=VARCHAR},
+      bkpicpath = #{bkpicpath,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
